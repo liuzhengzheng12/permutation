@@ -8,8 +8,12 @@ import java.util.Scanner;
 
 //字典序法生成全排列序列
 public class LexOrderPermutation implements PermutationGeneration {
+	//输入
+	private List<String> input = new ArrayList<String>();
 	//排列
 	private List<String> permutation = new ArrayList<String>();
+	//映射
+	private Map<String, Integer> map = new HashMap<String, Integer>();
 	//中介数
 	private List<Integer> mediaNumber = new ArrayList<Integer>();
 	//字典序最小的输入字符
@@ -29,10 +33,20 @@ public class LexOrderPermutation implements PermutationGeneration {
 			if (m.compareTo(s) > 0) {
 				m = s;
 			}
+			input.add(s);
 			permutation.add(s);
 		}
-		per_len = permutation.size();
+		input.sort(new StringComparator());
 		min = m.charAt(0);
+		per_len = input.size();
+		Character c;
+		
+		for (int i = 0; i < per_len; i++) {
+			c = (char)((int)min+i);
+			int pos = permutation.indexOf(input.get(i));
+			permutation.set(pos,  c.toString());
+			map.put(c.toString(), input.get(i).charAt(0)-c);
+		}
 		in.close();
 //		System.out.println("initial permutation: " + permutation);
 //		System.out.println("min character is: " + min);
@@ -183,35 +197,40 @@ public class LexOrderPermutation implements PermutationGeneration {
 	@Override
 	public void genPermutation(int pos) {
 		initPermutation();
+		printPermutation();
 		initmediaNumber();
 		addMediaNumber(convertToIncOrder(pos));
 		convertToPermutation();
-		
-		for (String s: permutation) {
-			System.out.print(s);
-		}
-		System.out.println();
+		printPermutation();
 	}
 	
 	//从给定排列按字典序生成之后的所有排列
 	@Override
 	public void genPermutation() {
 		initPermutation();
+		printPermutation();
 		initmediaNumber();
 		
 		while(!End()) {
 			addMediaNumber(convertToIncOrder(1));
 			convertToPermutation();
-			for (String s: permutation) {
-				System.out.print(s);
-			}
-			System.out.println();
+			printPermutation();
 		}
 	}
 	
+	//输出排列
+	private void printPermutation() {
+		Character c;
+		for (String s: permutation) {
+			c = (char)((int)s.charAt(0)+map.get(s));
+			System.out.print(c.toString());
+		}
+		System.out.println();
+	}
 	
-/*	public static void main(String[] args) {
+	
+	public static void main(String[] args) {
 		PermutationGeneration lop = new LexOrderPermutation();
 		lop.genPermutation();
-	}*/
+	}
 }
