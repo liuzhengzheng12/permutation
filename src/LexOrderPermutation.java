@@ -34,8 +34,9 @@ public class LexOrderPermutation implements PermutationGeneration {
 		per_len = permutation.size();
 		min = m.charAt(0);
 		in.close();
-		//System.out.println("initial permutation: " + permutation);
-		//System.out.println("min character is: " + min);
+//		System.out.println("initial permutation: " + permutation);
+//		System.out.println("min character is: " + min);
+//		System.out.println("per_len: " + per_len);
 	}
 	
 	//得到中介数
@@ -209,8 +210,8 @@ public class LexOrderPermutation implements PermutationGeneration {
 	}
 	
 	
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		PermutationGeneration lop = new LexOrderPermutation();
 		lop.genPermutation();
-	}
+	}*/
 }
