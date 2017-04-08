@@ -22,7 +22,21 @@ public class SJTOrderPermutation implements PermutationGeneration {
 	private Integer per_len;
 	//中介数长度
 	private Integer med_len;
-
+	
+	//初始化，读入排列长度
+	public void initPermutation(int per_size) {
+		min = '1';
+		Character c;
+		per_len = per_size;
+			
+		for (int i = 0; i < per_size; i++) {
+			c = (char)((int)min+i);
+			permutation.add(c.toString());
+			map.put(c.toString(), 0);
+		}
+	}
+		
+		
 	//初始化，读入初始排列
 	private void initPermutation() {
 		Scanner in = new Scanner(System.in);
@@ -295,6 +309,19 @@ public class SJTOrderPermutation implements PermutationGeneration {
 		}
 	}
 	
+	@Override
+	public void genAllPermutation(int per_size) {
+		initPermutation(per_size);
+		printPermutation();
+		initmediaNumber();
+		
+		while(!End()) {
+			addMediaNumber(convertToDecOrder(1));
+			convertToPermutation();
+			printPermutation();
+		}
+	}
+	
 	//输出排列
 	private void printPermutation() {
 		Character c;
@@ -308,6 +335,6 @@ public class SJTOrderPermutation implements PermutationGeneration {
 	
 	public static void main(String[] args) {
 		PermutationGeneration sop = new SJTOrderPermutation();
-		sop.genPermutation();
+		sop.genAllPermutation(3);
 	}
 }

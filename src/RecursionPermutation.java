@@ -9,6 +9,18 @@ public class RecursionPermutation implements PermutationGeneration{
 	//排列长度
 	private Integer per_len;
 	
+	//初始化，读入排列长度
+	public void initPermutation(int per_size) {
+		char m = '1';
+		Character c;
+		per_len = per_size;
+		
+		for (int i = 0; i < per_size; i++) {
+			c = (char)((int)m+i);
+			permutation.add(c.toString());
+		}
+	}
+	
 	//初始化，读入初始排列
 	private void initPermutation() {
 		Scanner in = new Scanner(System.in);
@@ -64,9 +76,16 @@ public class RecursionPermutation implements PermutationGeneration{
 		initPermutation();
 		perm(0, per_len - 1);
 	}	
-
+	
+	@Override
+	public void genAllPermutation(int per_size) {
+		initPermutation(per_size);
+		perm(0, per_len - 1);
+	}
+	
+	
 	public static void main(String[] args) {
-		PermutationGeneration sop = new RecursionPermutation();
-		sop.genPermutation();
+		PermutationGeneration rp = new RecursionPermutation();
+		rp.genAllPermutation(4);
 	}
 }

@@ -13,6 +13,23 @@ public class BackTrackingPermutation implements PermutationGeneration{
 	//排列长度
 	private Integer per_len;
 	
+	//初始化，读入排列长度
+	public void initPermutation(int per_size) {
+		char m = '1';
+		Character c;
+		per_len = per_size;
+			
+		for (int i = 0; i < per_size; i++) {
+			c = (char)((int)m+i);
+			permutation.add(c.toString());
+			result.add(c.toString());
+		}
+		
+		for (int i = 0; i < per_len; i ++){
+			used.add(false);
+		}
+	}
+	
 	//初始化，读入初始排列
 	private void initPermutation() {
 		Scanner in = new Scanner(System.in);
@@ -68,10 +85,17 @@ public class BackTrackingPermutation implements PermutationGeneration{
 		initPermutation();
 		backtracking(0);
 	}	
-
+	
+	@Override
+	public void genAllPermutation(int per_size) {
+		initPermutation(per_size);
+		backtracking(0);
+	}
+	
+	
 	public static void main(String[] args) {
-		PermutationGeneration sop = new BackTrackingPermutation();
-		sop.genPermutation();
+		PermutationGeneration btp = new BackTrackingPermutation();
+		btp.genAllPermutation(4);
 	}
 
 }
