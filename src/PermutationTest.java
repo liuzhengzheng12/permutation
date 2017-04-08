@@ -12,7 +12,7 @@ public class PermutationTest {
 				"DecOrder:Please input 3.\n" +
 				"SJTOrder:Please input 4.\n" +
 				"Recursion:Please input 5.\n" + 
-				"BackTracking:Please input 6.\n";;
+				"BackTracking:Please input 6.";;
 		System.out.println(info);
 		System.out.println("Input number:");
 		Scanner input = new Scanner(System.in);
