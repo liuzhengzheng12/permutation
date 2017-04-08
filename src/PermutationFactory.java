@@ -1,4 +1,3 @@
-
 public class PermutationFactory {
 	public PermutationGeneration getPermutation(Integer method) {
 		switch(method) {
