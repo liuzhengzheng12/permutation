@@ -81,7 +81,7 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 	//生成给定排列按递增进位制法之后的第pos个排列
 	@Override
 	public void genPermutation(int pos) {
-		initPermutation();
+		initPermutationFromInput();
 		initmediaNumber();
 		addMediaNumber(Util.convertToIncOrder(pos));
 		convertToPermutation();
@@ -90,8 +90,8 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 	
 	//从给定排列按递增进位制法生成之后的所有排列
 	@Override
-	public void genPermutation() {
-		initPermutation();
+	public void genPermutationAfter() {
+		initPermutationFromInput();
 		printPermutation();
 		initmediaNumber();
 		
@@ -105,7 +105,7 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 	//生成per_size大小的所有递增进位制法排列
 	@Override
 	public void genAllPermutation(int per_size) {
-		initPermutation(per_size);
+		initPermutationFromSize(per_size);
 		printPermutation();
 		initmediaNumber();
 		

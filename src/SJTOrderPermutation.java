@@ -194,7 +194,7 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 	//生成给定排列按邻位对换法之后的第pos个排列
 	@Override
 	public void genPermutation(int pos) {
-		initPermutation();
+		initPermutationFromInput();
 		initmediaNumber();
 		addMediaNumber(Util.convertToDecOrder(per_len, pos));
 		convertToPermutation();
@@ -203,8 +203,8 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 	
 	//从给定排列按邻位对换法生成之后的所有排列
 	@Override
-	public void genPermutation() {
-		initPermutation();
+	public void genPermutationAfter() {
+		initPermutationFromInput();
 		printPermutation();
 		initmediaNumber();
 		
@@ -218,7 +218,7 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 	//生成per_size大小的所有邻位对换法排列
 	@Override
 	public void genAllPermutation(int per_size) {
-		initPermutation(per_size);
+		initPermutationFromSize(per_size);
 		printPermutation();
 		initmediaNumber();
 		

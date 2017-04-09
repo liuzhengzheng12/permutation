@@ -29,15 +29,15 @@ public class RecursionPermutation extends Permutation implements PermutationGene
 	
 	//从给定排列按递归法生成之后的所有排列
 	@Override
-	public void genPermutation() {
-		initPermutation();
+	public void genPermutationAfter() {
+		initPermutationFromInput();
 		perm(0, per_len - 1);
 	}	
 	
 	//生成per_size大小的所有递归排列
 	@Override
 	public void genAllPermutation(int per_size) {
-		initPermutation(per_size);
+		initPermutationFromSize(per_size);
 		perm(0, per_len - 1);
 	}
 	

@@ -9,7 +9,7 @@ public class Permutation {
 	protected Integer per_len;
 	
 	//读入排列长度，初始化排列
-	protected void initPermutation(int per_size) {
+	protected void initPermutationFromSize(int per_size) {
 		per_len = per_size;
 		
 		for (int i = 0; i < per_size; i++) {
@@ -18,7 +18,7 @@ public class Permutation {
 	}
 	
 	//初始化，读入初始排列
-	protected void initPermutation() {
+	protected void initPermutationFromInput() {
 		Scanner in = new Scanner(System.in);
 		String[] str = in.nextLine().split(" ");
 
@@ -39,7 +39,7 @@ public class Permutation {
 	}
 	
 	//输出排列
-	protected void printPermutation(List<String> result) {
+	protected void printResultPermutation(List<String> result) {
 		for (String s: result) {
 			System.out.print(s+" ");
 		}

@@ -19,7 +19,7 @@ public class BackTrackingPermutation extends Permutation implements PermutationG
 	//permutation backtracking
 	public void backtracking(int k){
 		if ( k == per_len){
-			printPermutation(result);
+			printResultPermutation(result);
 			return;
 		}
 		else{
@@ -42,8 +42,8 @@ public class BackTrackingPermutation extends Permutation implements PermutationG
 	
 	//从给定排列按回溯法生成之后的所有排列
 	@Override
-	public void genPermutation() {
-		initPermutation();
+	public void genPermutationAfter() {
+		initPermutationFromInput();
 		init();
 		backtracking(0);
 	}	
@@ -51,7 +51,7 @@ public class BackTrackingPermutation extends Permutation implements PermutationG
 	//生成per_size大小的所有回溯排列
 	@Override
 	public void genAllPermutation(int per_size) {
-		initPermutation(per_size);
+		initPermutationFromSize(per_size);
 		init();
 		backtracking(0);
 	}
