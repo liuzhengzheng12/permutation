@@ -105,6 +105,7 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 	//生成per_size大小的所有递增进位制法排列
 	@Override
 	public void genAllPermutation(int per_size) {
+		long start = System.currentTimeMillis();
 		initPermutationFromSize(per_size);
 		printPermutation();
 		initmediaNumber();
@@ -112,8 +113,10 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 		while(!End()) {
 			addMediaNumber(Util.convertToIncOrder(1));
 			convertToPermutation();
-			printPermutation();
+			//printPermutation();
 		}
+		long end = System.currentTimeMillis();
+		System.out.println("time occupation: "+ (end-start) +" ms");
 	}
 	
 	//测试代码

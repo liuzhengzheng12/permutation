@@ -107,6 +107,7 @@ public class DecOrderPermutation extends Permutation implements PermutationGener
 	//生成per_size大小的所有递减进位制法排列
 	@Override
 	public void genAllPermutation(int per_size) {
+		long start = System.currentTimeMillis();
 		initPermutationFromSize(per_size);
 		printPermutation();
 		initmediaNumber();
@@ -114,8 +115,10 @@ public class DecOrderPermutation extends Permutation implements PermutationGener
 		while(!End()) {
 			addMediaNumber(Util.convertToDecOrder(per_len, 1));
 			convertToPermutation();
-			printPermutation();
+			//printPermutation();
 		}
+		long end = System.currentTimeMillis();
+		System.out.println("time occupation: "+ (end-start) +" ms");
 	}
 	
 	//测试代码

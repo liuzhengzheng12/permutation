@@ -9,7 +9,7 @@ public class RecursionPermutation extends Permutation implements PermutationGene
 	//permutation recursion
 	public void perm(int beg, int end){
 		if (beg == end){
-			printPermutation();
+			//printPermutation();
 			return;
 		}
 		else{
@@ -37,8 +37,11 @@ public class RecursionPermutation extends Permutation implements PermutationGene
 	//生成per_size大小的所有递归排列
 	@Override
 	public void genAllPermutation(int per_size) {
+		long start = System.currentTimeMillis();
 		initPermutationFromSize(per_size);
 		perm(0, per_len - 1);
+		long end = System.currentTimeMillis();
+		System.out.println("time occupation: "+ (end-start) +" ms");
 	}
 	
 	//测试代码
