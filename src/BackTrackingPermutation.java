@@ -19,7 +19,7 @@ public class BackTrackingPermutation extends Permutation implements PermutationG
 	//permutation backtracking
 	public void backtracking(int k){
 		if ( k == per_len){
-			printResultPermutation(result);
+			//printResultPermutation(result);
 			return;
 		}
 		else{
@@ -51,9 +51,12 @@ public class BackTrackingPermutation extends Permutation implements PermutationG
 	//生成per_size大小的所有回溯排列
 	@Override
 	public void genAllPermutation(int per_size) {
+		long start = System.currentTimeMillis();
 		initPermutationFromSize(per_size);
 		init();
 		backtracking(0);
+		long end = System.currentTimeMillis();
+		System.out.println("time occupation: "+ (end-start) +" ms");
 	}
 	
 	//测试代码

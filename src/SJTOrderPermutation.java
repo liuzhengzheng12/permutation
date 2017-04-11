@@ -218,6 +218,7 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 	//生成per_size大小的所有邻位对换法排列
 	@Override
 	public void genAllPermutation(int per_size) {
+		long start = System.currentTimeMillis();
 		initPermutationFromSize(per_size);
 		printPermutation();
 		initmediaNumber();
@@ -225,8 +226,10 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 		while(!End()) {
 			addMediaNumber(Util.convertToDecOrder(per_len, 1));
 			convertToPermutation();
-			printPermutation();
+			//printPermutation();
 		}
+		long end = System.currentTimeMillis();
+		System.out.println("time occupation: "+ (end-start) +" ms");
 	}
 	
 	//测试代码
