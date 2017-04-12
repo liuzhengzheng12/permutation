@@ -12,6 +12,7 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 	//中介数长度
 	private Integer med_len;
 	
+	
 	//得到中介数和方向
 	private void initmediaNumber() {
 		med_len = per_len - 1;
@@ -226,8 +227,8 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 		while(!End()) {
 			addMediaNumber(Util.convertToDecOrder(per_len, 1));
 			convertToPermutation();
-			//printPermutation();
 		}
+		
 		long end = System.currentTimeMillis();
 		System.out.println("time occupation: "+ (end-start) +" ms");
 	}
@@ -235,6 +236,6 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 	//测试代码
 	public static void main(String[] args) {
 		PermutationGeneration sop = new SJTOrderPermutation();
-		sop.genAllPermutation(3);
+		sop.genAllPermutation(4);
 	}
 }

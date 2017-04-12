@@ -84,6 +84,15 @@ public class LexOrderPermutation extends Permutation implements PermutationGener
 		return true;
 	}
 	
+	//判断是否为是最后一个排列
+	private boolean PermEnd() {
+		for (int i = 0; i < per_len - 1; i++) {
+			if (permutation.get(i).compareTo(permutation.get(i+1)) < 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 	//生成给定排列按字典序之后的第pos个排列
 	@Override
 	public void genPermutation(int pos) {
@@ -112,17 +121,39 @@ public class LexOrderPermutation extends Permutation implements PermutationGener
 	@Override
 	public void genAllPermutation(int per_size) {
 		long start = System.currentTimeMillis();
+		int i, j, k;
 		initPermutationFromSize(per_size);
 		printPermutation();
-		initmediaNumber();
 		
-		while(!End()) {
-			addMediaNumber(Util.convertToIncOrder(1));
-			convertToPermutation();
+		
+		while(!PermEnd()) {
+			for (i = per_len-2; i >= 0; i--) {
+				if (permutation.get(i).compareTo(permutation.get(i+1)) < 0) {
+					break;
+				}
+			}
+			
+			for (j = per_len-1; j > i; j--) {
+				if (permutation.get(j).compareTo(permutation.get(i)) > 0) {
+					break;
+				}
+			}
+			swap(i, j);
+			int mid = (per_len+i)/2;
+			for (k = i+1; k <= mid; k++) {
+				swap(k, per_len+i-k);
+			}
 			//printPermutation();
 		}
 		long end = System.currentTimeMillis();
 		System.out.println("time occupation: "+ (end-start) +" ms");	
+	}
+	
+	//交换排列中的两个元素
+	private void swap(int i, int j) {
+		String tmp = permutation.get(j);
+		permutation.set(j, permutation.get(i));
+		permutation.set(i, tmp);
 	}
 	
 	//测试代码
