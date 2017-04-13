@@ -102,6 +102,22 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 		}
 	}
 	
+	class Speedup implements Runnable{
+		Speedup(){
+		}
+		@Override
+		public void run(){
+			//initPermutationFromSize(per_size);
+			//printPermutation();
+			//initmediaNumber();
+			while(!End()) {
+				addMediaNumber(Util.convertToIncOrder(4));
+				convertToPermutation();
+				printPermutation();
+			}
+		}
+	}
+	
 	//生成per_size大小的所有递增进位制法排列
 	@Override
 	public void genAllPermutation(int per_size) {

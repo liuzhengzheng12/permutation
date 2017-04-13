@@ -123,8 +123,7 @@ public class LexOrderPermutation extends Permutation implements PermutationGener
 		long start = System.currentTimeMillis();
 		int i, j, k;
 		initPermutationFromSize(per_size);
-		printPermutation();
-		
+		printPermutation();	
 		
 		while(!PermEnd()) {
 			for (i = per_len-2; i >= 0; i--) {
