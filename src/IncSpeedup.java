@@ -36,6 +36,7 @@ public class IncSpeedup extends IncOrderPermutation implements Runnable {
 		threads = in.nextInt();
 		System.out.println("Please input the per_size:");
 		per_size = in.nextInt();
+		in.close();
 		
 		final CountDownLatch latch = new CountDownLatch(threads);  
 		Thread t[] = new Thread[threads];
@@ -52,6 +53,6 @@ public class IncSpeedup extends IncOrderPermutation implements Runnable {
 		}
 		long end = System.currentTimeMillis();
 		System.out.println("time occupation: "+ (end-start) +" ms");
-		in.close();
+
 	}
 }

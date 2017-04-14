@@ -36,10 +36,10 @@ public class DecSpeedup extends DecOrderPermutation implements Runnable {
 		threads = in.nextInt();
 		System.out.println("Please input the per_size:");
 		per_size = in.nextInt();
+		in.close();
 		
-		final CountDownLatch latch = new CountDownLatch(threads);  
+		final CountDownLatch latch = new CountDownLatch(threads);
 		Thread t[] = new Thread[threads];
-		
 		long start = System.currentTimeMillis();
 		for (int i = 0; i < threads; i++) {
 			t[i] = new Thread(new DecSpeedup(per_size, i, threads, latch));
@@ -52,6 +52,6 @@ public class DecSpeedup extends DecOrderPermutation implements Runnable {
 		}
 		long end = System.currentTimeMillis();
 		System.out.println("time occupation: "+ (end-start) +" ms");
-		in.close();
+		
 	}
 }
