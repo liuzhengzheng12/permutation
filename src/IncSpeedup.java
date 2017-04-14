@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
 
 public class IncSpeedup extends IncOrderPermutation implements Runnable {
@@ -25,14 +26,21 @@ public class IncSpeedup extends IncOrderPermutation implements Runnable {
 	
 	//测试代码
 	public static void main(String[] args) {
-		long start = System.currentTimeMillis();
 		//采用线程数
-		int threads = 4;
+		int threads;
 		//采用排列大小
-		int per_size = 12;
+		int per_size;
+		
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please input the threads you want to use:");
+		threads = in.nextInt();
+		System.out.println("Please input the per_size:");
+		per_size = in.nextInt();
+		
 		final CountDownLatch latch = new CountDownLatch(threads);  
 		Thread t[] = new Thread[threads];
 		
+		long start = System.currentTimeMillis();
 		for (int i = 0; i < threads; i++) {
 			t[i] = new Thread(new IncSpeedup(per_size, i, threads, latch));
 			t[i].start();
@@ -44,5 +52,6 @@ public class IncSpeedup extends IncOrderPermutation implements Runnable {
 		}
 		long end = System.currentTimeMillis();
 		System.out.println("time occupation: "+ (end-start) +" ms");
+		in.close();
 	}
 }
