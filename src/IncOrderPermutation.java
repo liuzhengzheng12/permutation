@@ -9,17 +9,16 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 	private Integer med_len;
 	
 	//得到递增进位制中介数
-	private void initmediaNumber() {
+	protected void initmediaNumber() {
 		med_len = per_len - 1;
 		int index, cnt;
-		char min = '1';
 		String str;
-		for (Character i = (char)((int)min + 1); i <= (char)((int)min + per_len - 1); i++) {
+		for (Integer i = 2; i <= per_len; i++) {
 			str = i.toString();
 			index = permutation.indexOf(str);
 			cnt = 0;
 			for (int j = index + 1; j < per_len; j++) {
-				if (str.compareTo(permutation.get(j)) > 0) {
+				if (i.compareTo(new Integer(permutation.get(j))) > 0) {
 					cnt++;
 				}
 			}
@@ -28,7 +27,7 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 	}
 	
 	//中介数转化为排列
-	private void convertToPermutation() {
+	protected void convertToPermutation() {
 		for (int i = 0; i < per_len; i++) {
 			permutation.set(i, "#");
 		}
@@ -51,7 +50,7 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 	}
 	
 	//计算中介数加上a之后的递增进位制数表示
-	private void addMediaNumber(List<Integer> a) {
+	protected void addMediaNumber(List<Integer> a) {
 		int a_len = a.size();
 		int carry = 0;
 		int adder = 0;
@@ -65,7 +64,10 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 			int tmp = mediaNumber.get(i);
 			mediaNumber.set(i, (mediaNumber.get(i) + adder + carry)%(i + 2));
 			carry = (tmp + adder + carry)/(i + 2);
-			}
+		}
+		if (carry != 0) {
+			last = true;
+		}
 	}
 	
 	//判断是否为最后一个中介数
@@ -102,21 +104,6 @@ public class IncOrderPermutation extends Permutation implements PermutationGener
 		}
 	}
 	
-	class Speedup implements Runnable{
-		Speedup(){
-		}
-		@Override
-		public void run(){
-			//initPermutationFromSize(per_size);
-			//printPermutation();
-			//initmediaNumber();
-			while(!End()) {
-				addMediaNumber(Util.convertToIncOrder(4));
-				convertToPermutation();
-				printPermutation();
-			}
-		}
-	}
 	
 	//生成per_size大小的所有递增进位制法排列
 	@Override

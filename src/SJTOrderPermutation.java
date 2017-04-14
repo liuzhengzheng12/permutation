@@ -8,13 +8,13 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 	//存储各元素的方向,true表示向左,false表示向右
 	private Map<String, Boolean> direction  = new HashMap<String, Boolean>();
 	//中介数
-	private List<Integer> mediaNumber = new ArrayList<Integer>();
+	protected List<Integer> mediaNumber = new ArrayList<Integer>();
 	//中介数长度
 	private Integer med_len;
 	
 	
 	//得到中介数和方向
-	private void initmediaNumber() {
+	public void initmediaNumber() {
 		med_len = per_len - 1;
 		int index, cnt;
 		String str = "2";
@@ -79,7 +79,7 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 	}
 	
 	//中介数转化为排列
-	private void convertToPermutation() {
+	public void convertToPermutation() {
 		Integer c;
 		//重新计算中介数的方向
 		for (int i = 0; i < med_len - 1; i++) {
@@ -148,7 +148,7 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 	}
 	
 	//计算中介数加上a之后的递减进位制数表示
-	private void addMediaNumber(List<Integer> a) {
+	public void addMediaNumber(List<Integer> a) {
 		int a_len = a.size();
 		int carry = 0;
 		int adder = 0;
@@ -162,7 +162,10 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 			int tmp = mediaNumber.get(i);
 			mediaNumber.set(i, (mediaNumber.get(i) + adder + carry)%(per_len - i));
 			carry = (tmp + adder + carry)/(per_len - i);
-			}
+		}
+		if (carry != 0) {
+			last = true;
+		}
 	}
 	
 	//判断是否为最后一个中介数
@@ -216,17 +219,19 @@ public class SJTOrderPermutation extends Permutation implements PermutationGener
 		}
 	}
 	
+	
 	//生成per_size大小的所有邻位对换法排列
 	@Override
 	public void genAllPermutation(int per_size) {
 		long start = System.currentTimeMillis();
 		initPermutationFromSize(per_size);
-		printPermutation();
+		//printPermutation();
 		initmediaNumber();
 		
 		while(!End()) {
-			addMediaNumber(Util.convertToDecOrder(per_len, 1));
 			convertToPermutation();
+			//printPermutation();
+			addMediaNumber(Util.convertToDecOrder(per_len, 1));
 		}
 		
 		long end = System.currentTimeMillis();

@@ -62,6 +62,10 @@ public class Util {
 	//十进制数a转化为递减进位制数
 	protected static List<Integer> convertToDecOrder(int per_len, Integer a) {
 		List<Integer> l = new ArrayList<Integer>();
+		if (a == 0) {
+			l.add(a);
+			return l;
+		}
 		
 		for (int i = per_len;;i--) {
 			l.add(a % i);

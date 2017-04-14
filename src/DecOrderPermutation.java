@@ -4,22 +4,21 @@ import java.util.List;
 //递减进位制法生成全排列序列
 public class DecOrderPermutation extends Permutation implements PermutationGeneration {
 	//中介数
-	private List<Integer> mediaNumber = new ArrayList<Integer>();
+	protected List<Integer> mediaNumber = new ArrayList<Integer>();
 	//中介数长度
 	private Integer med_len;
 
 	//得到中介数
-	private void initmediaNumber() {
+	protected void initmediaNumber() {
 		med_len = per_len - 1;
 		int index, cnt;
-		char min = '1';
 		String str;
-		for (Character i = (char)((int)min + 1); i <= (char)((int)min + per_len - 1); i++) {
+		for (Integer i = 2; i <=  per_len; i++) {
 			str = i.toString();
 			index = permutation.indexOf(str);
 			cnt = 0;
 			for (int j = index + 1; j < per_len; j++) {
-				if (str.compareTo(permutation.get(j)) > 0) {
+				if (i.compareTo(new Integer(permutation.get(j))) > 0) {
 					cnt++;
 				}
 			}
@@ -30,7 +29,7 @@ public class DecOrderPermutation extends Permutation implements PermutationGener
 	
 	
 	//中介数转化为排列
-	private void convertToPermutation() {
+	protected void convertToPermutation() {
 		for (int i = 0; i < per_len; i++) {
 			permutation.set(i, "#");
 		}
@@ -53,7 +52,7 @@ public class DecOrderPermutation extends Permutation implements PermutationGener
 	}
 	
 	//计算中介数加上a之后的递减进位制数表示
-	private void addMediaNumber(List<Integer> a) {
+	protected void addMediaNumber(List<Integer> a) {
 		int a_len = a.size();
 		int carry = 0;
 		int adder = 0;
@@ -67,7 +66,10 @@ public class DecOrderPermutation extends Permutation implements PermutationGener
 			int tmp = mediaNumber.get(i);
 			mediaNumber.set(i, (mediaNumber.get(i) + adder + carry)%(per_len - i));
 			carry = (tmp + adder + carry)/(per_len - i);
-			}
+		}
+		if (carry != 0) {
+			last = true;
+		}
 	}
 	
 	//判断是否为最后一个中介数
@@ -115,7 +117,7 @@ public class DecOrderPermutation extends Permutation implements PermutationGener
 		while(!End()) {
 			addMediaNumber(Util.convertToDecOrder(per_len, 1));
 			convertToPermutation();
-			//printPermutation();
+			printPermutation();
 		}
 		long end = System.currentTimeMillis();
 		System.out.println("time occupation: "+ (end-start) +" ms");

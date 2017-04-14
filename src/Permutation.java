@@ -7,10 +7,13 @@ public class Permutation {
 	protected List<String> permutation = new ArrayList<String>();
 	//排列长度
 	protected Integer per_len;
+	//结束标志符
+	protected boolean last;
 	
 	//读入排列长度，初始化排列
 	protected void initPermutationFromSize(int per_size) {
 		per_len = per_size;
+		last = false;
 		
 		for (int i = 0; i < per_size; i++) {
 			permutation.add(new Integer(1+i).toString());
@@ -19,6 +22,7 @@ public class Permutation {
 	
 	//初始化，读入初始排列
 	protected void initPermutationFromInput() {
+		last = false;
 		Scanner in = new Scanner(System.in);
 		String[] str = in.nextLine().split(" ");
 
